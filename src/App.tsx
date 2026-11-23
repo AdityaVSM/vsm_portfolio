@@ -1,24 +1,26 @@
-import { Box, Container } from '@mui/material';
-import { AnimatedBackground } from './components/AnimatedBackground';
-import { Navbar } from './components/Navbar';
+import { Header } from './components/Header';
 import { Hero } from './sections/Hero';
-import { Skills } from './sections/Skills';
 import { Experience } from './sections/Experience';
 import { Projects } from './sections/Projects';
+import { Skills } from './sections/Skills';
 import { Education } from './sections/Education';
+import { Footer } from './sections/Footer';
 
 export default function App() {
   return (
-    <Box sx={{ minHeight: '100vh', position: 'relative' }}>
-      <AnimatedBackground />
-      <Navbar />
-      <Container maxWidth="md" sx={{ py: 4, position: 'relative', zIndex: 1 }}>
+    <>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <Header />
+      <main id="main" className="container">
         <Hero />
-        <Skills />
         <Experience />
         <Projects />
+        <Skills />
         <Education />
-      </Container>
-    </Box>
+      </main>
+      <Footer />
+    </>
   );
 }

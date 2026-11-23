@@ -1,23 +1,37 @@
-import { CardContent, Grow, Stack, Typography } from '@mui/material';
+import { ArrowUpRightIcon } from '../components/Icons';
 import { Section } from '../components/Section';
-import { GlassCard } from '../components/GlassCard';
+import { TagList } from '../components/TagList';
 import { PROFILE } from '../data/profile';
 
 export const Projects = () => (
-  <Section title="Projects">
-    <Stack spacing={2}>
-      {PROFILE.projects.map((project, index) => (
-        <Grow in timeout={800 + index * 200} key={project.title}>
-          <div>
-            <GlassCard>
-              <CardContent>
-                <Typography variant="h6" color="white">{project.title}</Typography>
-                <Typography sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>{project.description}</Typography>
-              </CardContent>
-            </GlassCard>
+  <Section id="projects" title="Projects">
+    <div className="project-list">
+      {PROFILE.projects.map((project) => (
+        <article key={project.title} className="card">
+          <div className="card-head">
+            <h3 className="entry-title">{project.title}</h3>
+            {project.context && <span className="badge">{project.context}</span>}
           </div>
-        </Grow>
+          <ul className="bullets">
+            {project.highlights.map((h) => (
+              <li key={h}>{h}</li>
+            ))}
+          </ul>
+          <div className="card-foot">
+            <TagList items={project.tech} />
+            {project.links && project.links.length > 0 && (
+              <div className="card-links">
+                {project.links.map((link) => (
+                  <a key={link.href} className="text-link" href={link.href} target="_blank" rel="noreferrer">
+                    {link.label}
+                    <ArrowUpRightIcon width={14} height={14} />
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
       ))}
-    </Stack>
+    </div>
   </Section>
 );
