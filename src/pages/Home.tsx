@@ -161,13 +161,14 @@ const Education = () => (
       <div className="span-5">
         <div className="section-head">
           <h2 id="education-h">Computer science and engineering degrees</h2>
-          <p>A master’s in computer science now, after a bachelor’s in information science in Bangalore.</p>
         </div>
         <ul className="rows">
           {PROFILE.education.map((e) => (
             <li key={e.school}>
               <span className="rows__name">
-                {e.school}
+                <a className="link" href={`/education/${e.slug}`}>
+                  {e.school}
+                </a>
                 <small>
                   {e.degree}
                   {e.detail ? `, ${e.detail}` : ''}

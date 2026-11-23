@@ -34,6 +34,7 @@ main > #experience.is-live > .mo-pc__grid { align-content: start; align-items: s
 /* Home, education: the school's line under its name, the photograph as tall as the list beside it */
 #education .rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
 #education .edu-photo { aspect-ratio: 4 / 3; }
+@media (max-width: 1023px) { #education .edu-photo { aspect-ratio: 16 / 9; } }
 
 /* Detail pages (experience and projects): a long article, not one-screen sections */
 .detail { padding: calc(var(--nav) + var(--s-8)) 0 var(--s-9); }
@@ -41,6 +42,9 @@ main > #experience.is-live > .mo-pc__grid { align-content: start; align-items: s
 .detail__back { display: inline-block; margin-bottom: var(--s-7); color: var(--muted); text-decoration: none; }
 .detail__back:hover { color: var(--ink); }
 .detail__head { max-width: 62ch; }
+.detail__courses { margin-top: var(--s-5); max-width: 720px; }
+.detail__section { margin-top: var(--s-8); }
+.detail__section > h2 { font: var(--display-weight) var(--t-h3) / 1.2 var(--font-display); letter-spacing: var(--display-tracking); }
 .detail__head h1 { font: var(--display-weight) var(--t-h2) / 1.1 var(--font-display); letter-spacing: var(--display-tracking); margin: var(--s-3) 0 0; }
 .detail__meta { margin-top: var(--s-4); color: var(--muted); }
 .detail__tags { display: flex; flex-wrap: wrap; gap: var(--s-2); list-style: none; padding: 0; margin: var(--s-5) 0 0; }

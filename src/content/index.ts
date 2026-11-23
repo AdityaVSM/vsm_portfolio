@@ -2,7 +2,7 @@
 // Path convention: src/content/<kind>/<slug>.md
 const files = import.meta.glob('./*/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 
-export type ContentKind = 'experience' | 'projects' | 'writing';
+export type ContentKind = 'experience' | 'projects' | 'writing' | 'education';
 
 export const getContent = (kind: ContentKind, slug: string): string | undefined => files[`./${kind}/${slug}.md`];
 

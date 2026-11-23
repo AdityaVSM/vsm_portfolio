@@ -23,7 +23,7 @@ export const ProjectDetail = () => {
         <span key={l.href}>
           {i > 0 && ' · '}
           <a className="link" href={l.href} target="_blank" rel="noreferrer">
-            See the code on {l.label}
+            {l.label}
           </a>
         </span>
       ))}

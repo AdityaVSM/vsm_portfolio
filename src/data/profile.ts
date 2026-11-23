@@ -64,11 +64,19 @@ export interface Tool {
 }
 
 export interface Education {
+  slug: string; // its own page at /education/<slug>; longer write-up in src/content/education/<slug>.md
   degree: string;
   school: string;
   location: string;
   period: string;
   detail?: string;
+  photo?: Photo;
+  courses?: Course[]; // listed on the school's own page
+}
+
+export interface Course {
+  code: string;
+  name: string;
 }
 
 export interface Profile {
@@ -103,8 +111,8 @@ const photo = (file: string, w: number, h: number, alt: string, subject: string,
 export const PROFILE: Profile = {
   name: 'Aditya VSM',
   fullName: 'Aditya Vupparige Savitha Mowneshappa',
-  headline: 'Full stack software engineer studying at Texas A&M',
-  lead: 'Three years at Hewlett Packard Enterprise building a cloud configuration platform in Java, Spring Boot and React. Open to Summer 2027 software engineering internships in the United States.',
+  headline: 'Aditya VSM, software engineer',
+  lead: 'Three years building web apps and backend services at Hewlett Packard Enterprise. Now a Master’s student in computer science at Texas A&M, open to Summer 2027 internships.',
   location: 'College Station, Texas',
   status: 'Open to Summer 2027 software engineering internships in the United States.',
   statement: {
@@ -120,7 +128,7 @@ export const PROFILE: Profile = {
   },
   facts: [
     { label: 'Industry experience', value: '3 years at HPE' },
-    { label: 'Research internships', value: '2, in NLP and vision' },
+    { label: 'Research internships', value: '2, at AI research labs' },
     { label: 'HPE TechCon 2025', value: 'Paper presented in Houston' },
     { label: 'Texas A&M', value: 'MS CS, 2026 to 2028' },
   ],
@@ -190,6 +198,7 @@ export const PROFILE: Profile = {
         'Selected among the **top papers from India for HPE TechCon**, HPE’s global innovation conference, and presented at HPE Headquarters in Houston, USA.',
       ],
       tech: ['RAG', 'LLMs'],
+      links: [{ label: 'Read my TechCon post on LinkedIn', href: 'https://www.linkedin.com/feed/update/urn:li:activity:7304730869032701954/' }],
     },
     {
       slug: 'study-trackers',
@@ -203,7 +212,7 @@ export const PROFILE: Profile = {
       ],
       tech: ['React', 'TypeScript', 'PostgreSQL', 'Vercel', 'Neon'],
       // TODO: replace with the public repo / live URL once published
-      links: [{ label: 'GitHub', href: 'https://github.com/AdityaVSM' }],
+      links: [{ label: 'See the code on GitHub', href: 'https://github.com/AdityaVSM' }],
     },
     {
       slug: 'chatur',
@@ -216,7 +225,7 @@ export const PROFILE: Profile = {
         'Custom intent recognition model with spaCy for named entity recognition, plus an active learning feedback loop; works on any website by swapping the data behind it.',
       ],
       tech: ['Python', 'NLP', 'spaCy', 'NER', 'Intent Recognition'],
-      links: [{ label: 'GitHub', href: 'https://github.com/AdityaVSM/Chatur' }],
+      links: [{ label: 'See the code on GitHub', href: 'https://github.com/AdityaVSM/Chatur' }],
     },
   ],
   // Add a post: create src/content/writing/<slug>.md and list it here.
@@ -257,18 +266,27 @@ export const PROFILE: Profile = {
   },
   education: [
     {
+      slug: 'texas-am',
       degree: 'Master’s in Computer Science',
       school: 'Texas A&M University',
       location: 'College Station, TX',
       period: '2026 to 2028',
       detail: 'graduating May 2028',
+      photo: photo('texas-am.jpg', 960, 756, 'The domed Academic Building at Texas A&M University framed by trees', 'Texas A&M campus'),
+      courses: [
+        { code: 'CSCE 606', name: 'Software Engineering' },
+        { code: 'CSCE 625', name: 'Artificial Intelligence' },
+        { code: 'CSCE 629', name: 'Analysis of Algorithms' },
+      ],
     },
     {
+      slug: 'bmsce',
       degree: 'B.E. in Information Science and Engineering',
       school: 'BMS College of Engineering',
       location: 'Bangalore, India',
       period: '2019 to 2023',
       detail: 'GPA 3.8 / 4.0',
+      photo: photo('chatur.jpg', 1280, 960, 'The postgraduate block of BMS College of Engineering behind a lawn', 'college campus'),
     },
   ],
   educationPhoto: photo('texas-am.jpg', 960, 756, 'The domed Academic Building at Texas A&M University framed by trees', 'Texas A&M campus'),

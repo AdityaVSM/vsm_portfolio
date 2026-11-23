@@ -5,6 +5,7 @@ import { Home } from './pages/Home';
 import { ExperienceDetail } from './pages/ExperienceDetail';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { PostDetail } from './pages/PostDetail';
+import { EducationDetail } from './pages/EducationDetail';
 import { NotFound } from './pages/NotFound';
 
 // Pages link to each other with plain <a> tags (full page loads), so the design kit's scripts
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/experience/:slug" element={<ExperienceDetail />} />
         <Route path="/projects/:slug" element={<ProjectDetail />} />
         <Route path="/writing/:slug" element={<PostDetail />} />
+        <Route path="/education/:slug" element={<EducationDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer onHome={onHome} />

@@ -40,6 +40,6 @@ The expert review turned out to be less useful than we expected. For most config
 - Selected among the **top papers from India** for **HPE TechCon 2025**, HPE's global innovation conference.
 - Presented in person at **HPE Headquarters in Houston, Texas**.
 
-TechCon was a five-day event. Beyond presenting, I attended presentations and TED-style talks from engineers across HPE, met other presenters, and toured HPE's head office.
+TechCon was a five-day event. Beyond presenting, I attended presentations and TED-style talks from engineers across HPE, met other presenters, and toured HPE's head office. I wrote about the week [on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7304730869032701954/).
 
 <!-- TODO(Aditya): did this ship into the configuration tool, or stay a prototype? Add a photo: put it in public/case-studies/ and use ![Caption](/case-studies/techcon.jpg) -->
