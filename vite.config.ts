@@ -10,4 +10,6 @@ export default defineConfig({
       },
     }),
   ],
+  // public/assets holds the design kit (system.css, motion, moments); keep Vite's bundles apart
+  build: { assetsDir: 'static' },
 })

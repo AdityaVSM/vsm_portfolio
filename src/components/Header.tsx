@@ -1,40 +1,35 @@
 import { PROFILE } from '../data/profile';
-import { DownloadIcon } from './Icons';
+import { NAV, homeHref } from './nav';
 
-const NAV_ITEMS = [
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'education', label: 'Education' },
-];
-
-const initials = PROFILE.name
-  .split(' ')
-  .filter(Boolean)
-  .map((part) => part[0])
-  .slice(0, 2)
-  .join('')
-  .toUpperCase();
-
-export const Header = () => (
-  <header id="top" className="header">
-    <div className="container header-inner">
-      <a href="#top" className="brand" aria-label="Back to top">
-        {initials}
+export const Header = ({ onHome }: { onHome: boolean }) => (
+  <header className="nav nav--centre">
+    <div className="wrap nav__bar">
+      <a className="skip-link" href={onHome ? '#top' : '#main'}>
+        Skip to content
       </a>
-      <nav aria-label="Sections">
-        <ul className="nav-list">
-          {NAV_ITEMS.map((item) => (
-            <li key={item.id}>
-              <a href={`#${item.id}`}>{item.label}</a>
-            </li>
-          ))}
-        </ul>
+      <a className="nav__logo" href={onHome ? '#top' : '/'}>
+        <span className="mark" data-mark="stack" aria-hidden="true"></span>
+        {PROFILE.name}
+      </a>
+      <nav className="nav__links" aria-label="Main">
+        {NAV.map((item) => (
+          <div className="nav__item" key={item.id}>
+            <a className="nav__link" href={homeHref(item.id, onHome)}>
+              {item.label}
+            </a>
+          </div>
+        ))}
       </nav>
-      <a className="button button-primary button-sm" href={PROFILE.links.resume} download>
-        <DownloadIcon width={16} height={16} />
-        Resume
-      </a>
+      <div className="nav__actions">
+        <a className="btn btn--primary" href={`mailto:${PROFILE.links.email}`}>
+          Email me
+        </a>
+      </div>
+      <button className="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <path d="M2 5h14M2 13h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+      </button>
     </div>
   </header>
 );

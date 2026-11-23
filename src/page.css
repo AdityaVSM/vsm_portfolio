@@ -1,0 +1,78 @@
+/* Page CSS: only what the design kit (public/assets) lacks. Colours, type and spacing come from its tokens. */
+
+/* Home, skills: the real tool icons as a mosaic, six across in full rows (four on a tablet, three on a phone) */
+#skills .skills-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+@media (max-width: 1023px) { #skills .skills-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 640px) { #skills .ic-cell { grid-template-columns: auto minmax(0, 1fr); align-items: center; } }
+@media (max-width: 639px) { #skills .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } #skills .ic-cell { padding: var(--s-4); } }
+
+/* Home, projects: one picture ratio for the row; stacked on a tablet and a phone the three tiles take two screens */
+#projects .tile { --tile-ratio: 3 / 2; }
+@media (max-width: 1279px) { #projects .tile { --tile-ratio: 16 / 10; } }
+/* a tablet: each tile a row, its picture left and its words right, so the three fit one screen */
+@media (min-width: 640px) and (max-width: 1023px) {
+  #projects .grid > .tile { grid-column: 1 / -1; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); align-items: start; --tile-ratio: 16 / 9; }
+  #projects .tile > .tile__media { grid-column: 1; grid-row: 1 / span 2; }
+  #projects .tile > :not(.tile__media) { grid-column: 2; }
+}
+#projects { --hm: 2; }
+@media (max-width: 639px) { #projects .grid > .tile { grid-column: 1 / -1; --tile-ratio: 16 / 10; } }
+
+#skills { --hm: 2; }
+
+/* Home, experience (the pinned-chapters moment) at rest: one screen on a tablet, two on a phone */
+@media (min-width: 640px) and (max-width: 1023px) {
+  #experience .mo-pc__visual > img { max-height: 18svh; }
+  main > #experience[data-moment]:not(.is-live) { height: 100svh; }
+}
+/* a phone: two screens at least, growing with its steps on a small phone */
+@media (max-width: 639px) { main > #experience[data-moment]:not(.is-live) { min-height: calc(2 * 100lvh); } }
+/* live (from 1024px): the held stage's text and picture top-aligned under the header, like every split of the page */
+main > #experience.is-live > .mo-pc__grid { align-content: start; align-items: start; padding-top: calc(var(--nav) + var(--s-7)); }
+@media (max-width: 1279px) { #experience.is-live .mo-pc__visuals { aspect-ratio: 1 / 1; max-height: calc(100svh - var(--nav) - var(--s-7) - var(--s-7)); } }
+
+/* Home, education: the school's line under its name, the photograph as tall as the list beside it */
+#education .rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
+#education .edu-photo { aspect-ratio: 4 / 3; }
+
+/* Detail pages (experience and projects): a long article, not one-screen sections */
+.detail { padding: calc(var(--nav) + var(--s-8)) 0 var(--s-9); }
+.detail > .wrap { display: block; }
+.detail__back { display: inline-block; margin-bottom: var(--s-7); color: var(--muted); text-decoration: none; }
+.detail__back:hover { color: var(--ink); }
+.detail__head { max-width: 62ch; }
+.detail__head h1 { font: var(--display-weight) var(--t-h2) / 1.1 var(--font-display); letter-spacing: var(--display-tracking); margin: var(--s-3) 0 0; }
+.detail__meta { margin-top: var(--s-4); color: var(--muted); }
+.detail__tags { display: flex; flex-wrap: wrap; gap: var(--s-2); list-style: none; padding: 0; margin: var(--s-5) 0 0; }
+.detail__tags li { font-size: var(--t-small); padding: var(--s-1) var(--s-3); border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+.detail__photo { margin: var(--s-8) 0 0; aspect-ratio: 21 / 9; }
+.detail__pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); margin-top: var(--s-9); max-width: 900px; }
+.detail__pager-link { display: grid; gap: var(--s-1); padding: var(--s-5); color: inherit; text-decoration: none; }
+.detail__pager-next { grid-column: 2; text-align: right; }
+@media (max-width: 639px) {
+  .detail__photo { aspect-ratio: 4 / 3; }
+  .detail__pager { grid-template-columns: 1fr; }
+  .detail__pager-next { grid-column: auto; }
+}
+
+/* The article body rendered from Markdown */
+.prose { max-width: 68ch; margin-top: var(--s-8); font-size: 18px; line-height: 1.7; }
+.prose > * + * { margin-top: 1em; }
+.prose h2 { font: var(--display-weight) var(--t-h3) / 1.2 var(--font-display); letter-spacing: var(--display-tracking); margin-top: 2em; }
+.prose h3 { font: 500 var(--t-card) / 1.3 var(--font-text); margin-top: 1.6em; }
+.prose h2 + *, .prose h3 + * { margin-top: 0.6em; }
+.prose > :first-child { margin-top: 0; }
+.prose strong { font-weight: 500; }
+.prose a { color: var(--action); text-decoration: underline; text-underline-offset: 3px; }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li::marker { color: var(--muted); }
+.prose li + li { margin-top: 0.4em; }
+.prose blockquote { margin: 0; padding-left: var(--s-5); border-left: 2px solid var(--action); font: var(--display-weight) var(--t-lead) / 1.45 var(--font-display); }
+.prose code { font-size: 0.88em; padding: 0.1em 0.35em; border-radius: var(--r-sm); background: var(--surface); }
+.prose pre { overflow-x: auto; padding: var(--s-5); border-radius: var(--r-md); background: var(--surface); }
+.prose pre code { padding: 0; background: none; }
+.prose table { width: 100%; border-collapse: collapse; }
+.prose th, .prose td { text-align: left; padding: var(--s-2) var(--s-3); border-bottom: 1px solid var(--line); }
+.prose .prose__photo { display: block; margin: var(--s-7) 0; }
